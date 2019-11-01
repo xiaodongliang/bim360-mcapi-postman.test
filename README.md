@@ -17,7 +17,11 @@ Steps:
  <p align="center"><img src="./help/config.png" width="600"></p> 
  
 3.	Get access token by logging a user of the project.
-4.	Play the scripts
+4.  Set the token to environment variable access_token 
+
+ <p align="center"><img src="./help/token.png" width="600"></p> 
+
+5.	Play the scripts
 
 
 ## Tricks and Tips

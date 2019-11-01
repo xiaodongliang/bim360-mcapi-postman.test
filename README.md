@@ -3,7 +3,7 @@
 Steps:
 1.	This script assumes the container id of Model Coordination has been achieved by other scripts. The container id is the id of BIM360 project.
 
- <img src="./help/containterid.png" width="600"> 
+  <img src="./help/containterid.png" width="600" align="center"> 
 
  It can also be achieved on BIM 360 UI manually.
 

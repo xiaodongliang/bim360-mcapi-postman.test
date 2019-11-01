@@ -3,19 +3,18 @@
 Steps:
 1.	This script assumes the container id of Model Coordination has been achieved by other scripts. The container id is the id of BIM360 project.
 
-<p align="center">
- <img src="./help/containterid.png" width="600" > 
-</p>
+<p align="center"><img src="./help/containterid.png" width="600" ></p>
+
  It can also be achieved on BIM 360 UI manually.
 
-  <img src="./help/projectidinui.png" width="600"> 
+<p align="center"><img src="./help/projectidinui.png" width="600"></p>
 
 
 2.	Input oAuth credentials, following the steps at: https://forge.autodesk.com/en/docs/oauth/v2/tutorials/get-3-legged-token/ 
 
- <img src="./help/oAuth2.png" width="600"> 
+ <p align="center"><img src="./help/oAuth2.png" width="600"></p> 
 
- <img src="./help/config.png" width="600"> 
+ <p align="center"><img src="./help/config.png" width="600"></p> 
  
 3.	Get access token by logging a user of the project.
 4.	Play the scripts

@@ -1,0 +1,2021 @@
+{
+	"info": {
+		"_postman_id": "775a71ea-86b6-4b12-aeb1-fcb04df12987",
+		"name": "BIM 360 MC API Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Permissions - Unpublished API",
+			"item": [
+				{
+					"name": "Unpubished API: Refresh Container Permissions",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c0d2cad4-f6e3-428c-a54b-c6e50534c7d2",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e09e956e-7b23-4f98-9f4e-d8d01cb0cc03",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"jobId\", body[\"jobId\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/permissions:refresh",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"permissions:refresh"
+							]
+						},
+						"description": "Assume permissions of member permissions are updated (say if permission with Model Coordination module, permissions with folder etc). \nOne Job will be posted. Check the job status by the other endpoint [Permissions Refresh Status]"
+					},
+					"response": []
+				},
+				{
+					"name": "Unpubished API:: Permissions Refresh Status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/jobs/{{jobId}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"jobs",
+								"{{jobId}}"
+							]
+						},
+						"description": "When the status is done, play with other API of Model Coordination to check if they follow the updated permissions"
+					},
+					"response": []
+				},
+				{
+					"name": "Unpubished API:GET One Modelset Permissions",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/permissions",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ModelSet",
+			"item": [
+				{
+					"name": "GET Container Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a2d57b5-0f62-4780-bb81-67757d1234aa",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Modelsets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a2d57b5-0f62-4780-bb81-67757d1234aa",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"modelset_id\", body[\"modelSets\"][0].modelSetId)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}} /modelsets",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}} ",
+								"modelsets"
+							]
+						},
+						"description": "The first modelset ID will be set to [modelset_id] for other endpoints use. Manually change to the id of other modelset if needed."
+					},
+					"response": []
+				},
+				{
+					"name": "GET One Modelset",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET One Modelset versions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "990399ec-bd84-4303-a0e2-94183a957c95",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"modelset_v_id\", body[\"modelSetVersions\"][0].version)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions"
+							]
+						},
+						"description": "The first modelset version id will be set to [modelset_v_id] for other endpoints use. Manually change to the id of other modelset version if needed."
+					},
+					"response": []
+				},
+				{
+					"name": "GET One Modelset versions Latest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "990399ec-bd84-4303-a0e2-94183a957c95",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"modelset_v_id\", body[\"version\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions/latest",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions",
+								"latest"
+							]
+						},
+						"description": "The  latest modelset version id will be set to [modelset_v_id] for other endpoints use."
+					},
+					"response": []
+				},
+				{
+					"name": "GET One Modelset One Version",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions/{{modelset_v_id}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions",
+								"{{modelset_v_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Modelset Version Enable",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98f57720-ab71-417d-9d38-0e370cda2fd5",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"jobId\", body[\"jobId\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions:enable",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions:enable"
+							]
+						},
+						"description": "Enables automatic version creation for a given model set.\n\nIf enabled, model set version creation will be triggered when the model set’s folders’ content changes, or if a call is explicitly made to the ‘Create Model Set Version’ endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "POST Modelset Version Disable",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions:disable",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions:disable"
+							]
+						},
+						"description": "Disables automatic version creation for a given model set.\n\n If disabled, only an explicit call to the ‘Create Model Set Version’ endpoint will trigger new version creation."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Modelset - input a folder urn firstly",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f76f05f-f299-4293-8c96-408d81d3f868",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"jobId\", body[\"jobId\"])",
+									"pm.environment.set(\"modelset_id\", body[\"modelSetId\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"ModelSetCreatedByAPI\",\n  \"description\": \"description\",\n  \"isDisabled\": true,\n  \"folders\": [\n    {\n      \"folderUrn\": \"urn:adsk.wipprod:fs.folder:co.tCoEVvA4Qa2BOPWfb-RYwg\"\n       \n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets"
+							]
+						},
+						"description": "1. get a folder urn from other APIs of Data Managemen firstly, and input it as body param [folderUrn]. Ensure this user has write permissions of the folder\n2. provide the custom name [name] of the new modelset\n3. after posting, a job will be starting. The job id will be set to [jobId]. Check the status by the other endpoint [Get Job Result of Creating Modelset]"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Result of Creating Modelset",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/jobs/{{jobId}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"jobs",
+								"{{jobId}}"
+							]
+						},
+						"description": "All calls to the containers resource will result in a job. This endpoint can be used to track the progress of these jobs.\nThe current job status. Possible values: Failed, Running, Succeeded, Archived"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Modelset Version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f76f05f-f299-4293-8c96-408d81d3f868",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"jobId\", body[\"jobId\"])",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n}"
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions"
+							]
+						},
+						"description": "1. Requests that the Model Coordination system creates a new version of a given model set.\n2. Note that this operation is not guaranteed to result in a new version of the model set being generated. If the folder contents have not changed, or the change does not necessitate a new model set version (e.g. the changed models are not valid for use in Model Coordination) then no new model set version will be created.\n3. After posting, a job will be starting. The job id will be set to [jobId]. Check the status by the other endpoint [Get Job Result of Creating Modelset]"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Result of Creating Modelset Version",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/jobs/{{jobId}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"jobs",
+								"{{jobId}}"
+							]
+						},
+						"description": "Retrieves information about a given model set job.\nThe current job status. Possible values: Failed, Running, Succeeded, Archived"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Healthy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d8f5984-b54d-40ae-acad-e5f1936be286",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"x-amz-security-token\", body[\"headers\"][\"x-amz-security-token\"]); ",
+									"pm.environment.set(\"X-Amz-Date\", body[\"headers\"][\"X-Amz-Date\"]); ",
+									"pm.environment.set(\"X-Amz-Content-SHA256\", body[\"headers\"][\"X-Amz-Content-SHA256\"]); ",
+									"pm.environment.set(\"Authorization\", body[\"headers\"][\"Authorization\"]); ",
+									"pm.environment.set(\"fieldsurl\", body[\"url\"]); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://developer.api.autodesk.com/bim360/modelset/v3/health",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ModelSet Views",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ea4672e-0554-491e-afa9-496c45f1e4ac",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/screenshots/{{screenshot_id}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"screenshots",
+								"{{screenshot_id}}"
+							]
+						},
+						"description": "levels of all project memebers for Checklist permissions. consistent to what in UI >> Project Management >>CheckList Permissions.\nresponse>>data[item].attributes.levels\nBasic in UI is 'None' in API."
+					},
+					"response": []
+				},
+				{
+					"name": "POST ModelSet Screenshot",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ea4672e-0554-491e-afa9-496c45f1e4ac",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"screenshot_id\", body[\"screenshot_id\"]);  "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/Users/xiaodongliang/Documents/Temp-Screenshots/Screen Shot 2019-09-04 at 2.27.23 PM.png"
+							}
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/screenshots",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"screenshots"
+							]
+						},
+						"description": "1. select a local file to upload. \n2. Note: when uploading a screenshot, it creates a \"temporary\" screenshot ID, which expires after 30 days - attaching it to a resource takes the temporary screenshot and makes a \"persistent\" screenshot with a new ID, which is then returned with the resource. So temp screenshot cannot be got by [GET: Modelset Screenshot].\n3. The temp id will be set to [screenshot_id]."
+					},
+					"response": []
+				},
+				{
+					"name": "POST View",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ea4672e-0554-491e-afa9-496c45f1e4ac",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"view_id\", body[\"viewId\"]);  ",
+									"pm.environment.set(\"jobId\", body[\"jobId\"]);  "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n             \"name\": \"test view 2019-10-24-1\",\n            \"description\": \"for API test\",\n            \"isPrivate\": true,\n            \"documentLineageUrns\": [\n                \"urn:adsk.wipprod:dm.lineage:tHFJ-AocTIKVA5nJyd4t6A\",\n                \"urn:adsk.wipprod:dm.lineage:TiGIoIRSSkCL772Qphrlrw\"\n            ],\n            \"screenshotId\":\"{{screenshot_id}}\"\n  }"
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/views",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"views"
+							]
+						},
+						"description": "1. A view consists of a chosen set of distinct model document lineages which exist within a single model set. The ID of a newly uploaded screenshot can also be supplied, which will associate the screenshot with the newly created view.\n2. Ensure to get documentLineageUrns by [GET One Modelset One Version] or by API of Data Management. \n2. A job will be created and id is set to [jobId]. Check the status by the other endpoint [GET View Job]"
+					},
+					"response": []
+				},
+				{
+					"name": "GET View  Job",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ea4672e-0554-491e-afa9-496c45f1e4ac",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/views/{{view_id}}/jobs/{{jobId}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"views",
+								"{{view_id}}",
+								"jobs",
+								"{{jobId}}"
+							]
+						},
+						"description": "1. Retrieves information about a given model set view job.\n\n2. The current job status. Possible values: Failed, Running, Succeeded, Archived"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ModelSet Screenshot",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ea4672e-0554-491e-afa9-496c45f1e4ac",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/screenshots/{{screenshot_id}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"screenshots",
+								"{{screenshot_id}}"
+							]
+						},
+						"description": "Newly uploaded screenshots can be retrieved with this endpoint and must first be associated with a resource."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ClashResult",
+			"item": [
+				{
+					"name": "GET Modelset Clash Tests",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29208843-4a67-44fd-b90e-53f145a23be5",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"test_id\", body[\"tests\"][0].id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/tests",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"tests"
+							]
+						},
+						"description": "get tests collection, the first test id is set to [test_id] for other endpoints use. Change the id of other test if needed."
+					},
+					"response": []
+				},
+				{
+					"name": "GET Clash Tests of model set version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29208843-4a67-44fd-b90e-53f145a23be5",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"test_id\", body[\"tests\"][0].id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions/{{modelset_v_id}}/tests",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions",
+								"{{modelset_v_id}}",
+								"tests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET One Clash Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29208843-4a67-44fd-b90e-53f145a23be5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/tests/{{test_id}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"tests",
+								"{{test_id}}"
+							]
+						},
+						"description": "Check status if the test has succeeded"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Clash Test Resources ( Change index in post-test script of Postman to download all resources)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29208843-4a67-44fd-b90e-53f145a23be5",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"",
+									"//change index to download resource one by one",
+									"var index = 0",
+									"//",
+									"pm.environment.set(\"one_resource_url\", body[\"resources\"][index][\"url\"])",
+									" "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/tests/{{test_id}}/resources",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"tests",
+								"{{test_id}}",
+								"resources"
+							]
+						},
+						"description": "1. The first resource url will be set to [one_resource_url]. Change index in post-test script of Postman to download all other resources\n2. use [GET Download One Test Resource] to download the file"
+					},
+					"response": []
+				},
+				{
+					"name": "Download One Test Resource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d8f5984-b54d-40ae-acad-e5f1936be286",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-amz-security-token",
+								"type": "text",
+								"value": "{{x-amz-security-token}}"
+							},
+							{
+								"key": "X-Amz-Date",
+								"type": "text",
+								"value": "{{X-Amz-Date}}"
+							},
+							{
+								"key": "X-Amz-Content-SHA256",
+								"type": "text",
+								"value": "{{X-Amz-Content-SHA256}}"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{Authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{one_resource_url}}",
+							"host": [
+								"{{one_resource_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Clash Assigned  (tests/{{test_id}}/clashes/assigned)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/tests/{{test_id}}/clashes/assigned",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"tests",
+								"{{test_id}}",
+								"clashes",
+								"assigned"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Clash Assigned  (tests/{{test_id}}/clashes/closed",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/tests/{{test_id}}/clashes/closed",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"tests",
+								"{{test_id}}",
+								"clashes",
+								"closed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Clash Assigned ( {{modelset/modelset_id}}/clash/assigned",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/clashes/assigned",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"clashes",
+								"assigned"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ModelSet Screenshot",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ea4672e-0554-491e-afa9-496c45f1e4ac",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"screenshot_id\", body[\"screenshot_id\"]);  "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/Users/xiaodongliang/Documents/Temp-Screenshots/Screen Shot 2019-09-04 at 2.27.23 PM.png"
+							}
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/screenshots",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"screenshots"
+							]
+						},
+						"description": "1. select a local file to upload. \n2. Note: when uploading a screenshot, it creates a \"temporary\" screenshot ID, which expires after 30 days - attaching it to a resource takes the temporary screenshot and makes a \"persistent\" screenshot with a new ID, which is then returned with the resource. So temp screenshot cannot be got by [GET: Clash Screenshot].\n3. The temp id will be set to [screenshot_id]."
+					},
+					"response": []
+				},
+				{
+					"name": "Post Clash Assigned for Issue (provide params of viewer param of one model)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f97af416-7a48-435f-b4ec-e3f864781e16",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"jobId\", body[\"jobId\"]);  "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n        {\n          \"id\": \"\",\n          \"title\": \"This is created by API from Postman, 2019-10-9-11-31\",\n          \"description\": \"This is created by API from Postman, 2019-10-9-11-31\",\n          \"documentLineageUrn\": \"urn:adsk.wipprod:dm.lineage:hUtwBDf4SNurCoKkTBpYXA\",\n           \"documentVersion\": \"1\",\n          \"assignedTo\": \"200902260532621\",\n          \"assignedToType\": \"User\" ,\n          \"pushpin\": { \n          \t\"type\": \"TwoDVectorPushpin\",\n                    \"location\": {\n                        \"x\":  -6.180022239685059,\n                        \"y\": -6.623255491256714,\n                        \"z\": 0.03569430112838745\n                    },\n                    \"objectId\": \"16851\"\n           },\n          \"clashes\": [\n            1515\n          ],\n          \"issueTypeId\": \"\",\n          \"issueSubTypeId\": \"\",\n          \"rootCauseId\": \"\",\n          \"screenShots\": [\n            \"{{screenshot_id}}\"\n          ]\n        }\n      ]"
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/tests/{{test_id}}/clashes:assign",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"tests",
+								"{{test_id}}",
+								"clashes:assign"
+							]
+						},
+						"description": "1. get documentLineageUrn from GET one model set one version\n2. get params of viewer by client side app (click object inside Forge Viewer)\n3. get screenshot id from Post Modelset Screenshot\n4. a job will be posted and id is set to [jobId]. Check status by the other endpoint [GET Clash Issue Job Status]"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Clash Issue Job Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/clashes/jobs/{{jobId}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"clashes",
+								"jobs",
+								"{{jobId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Clash Test Close",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29208843-4a67-44fd-b90e-53f145a23be5",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"jobId\", body[\"jobId\"]);  "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/clash/v3/containers/{{mc_containter_id}}/tests/{{test_id}}/clashes:close",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"containers",
+								"{{mc_containter_id}}",
+								"tests",
+								"{{test_id}}",
+								"clashes:close"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Clash Healthy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d8f5984-b54d-40ae-acad-e5f1936be286",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://developer.api.autodesk.com/bim360/clash/v3/health",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"bim360",
+								"clash",
+								"v3",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IndexAPI",
+			"item": [
+				{
+					"name": "GET One Modelset One Version Manifest",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset-index/v1/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions/{{modelset_v_id}}/manifest",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset-index",
+								"v1",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions",
+								"{{modelset_v_id}}",
+								"manifest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Index Fields Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d8f5984-b54d-40ae-acad-e5f1936be286",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"one_index_file_url\", body[\"url\"]); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset-index/v1/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions/{{modelset_v_id}}/fields",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset-index",
+								"v1",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions",
+								"{{modelset_v_id}}",
+								"fields"
+							]
+						},
+						"description": "The first resource url will be set to [one_resource_url]. Use [GET Index Fields File] to download the file"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Index Fields File",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d8f5984-b54d-40ae-acad-e5f1936be286",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"x-amz-security-token\", body[\"headers\"][\"x-amz-security-token\"]); ",
+									"pm.environment.set(\"X-Amz-Date\", body[\"headers\"][\"X-Amz-Date\"]); ",
+									"pm.environment.set(\"X-Amz-Content-SHA256\", body[\"headers\"][\"X-Amz-Content-SHA256\"]); ",
+									"pm.environment.set(\"Authorization\", body[\"headers\"][\"Authorization\"]); ",
+									"pm.environment.set(\"fieldsurl\", body[\"url\"]); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-amz-security-token",
+								"value": "{{x-amz-security-token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Amz-Date",
+								"value": "{{X-Amz-Date}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Amz-Content-SHA256",
+								"value": "{{X-Amz-Content-SHA256}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{one_index_file_url}}",
+							"host": [
+								"{{one_index_file_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start One Query of Modelset One Version Index  （input SQL S3 query)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4fea20eb-341b-4bdf-bea1-3136bb1abf29",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"jobId\", body[\"jobId\"]); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"statement\":\"select s.file, s.db, s.docs, s.id, s.p153cb174 as name, s.p5eddc473 as cat, s.p30db51f9 as fam, s.p13b6b3a0 as typ from s3object s where count(s.docs)>0\"\n}"
+						},
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset-index/v1/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/versions/{{modelset_v_id}}/indexes:query",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset-index",
+								"v1",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"versions",
+								"{{modelset_v_id}}",
+								"indexes:query"
+							]
+						},
+						"description": "1, input the S3 statement for querying.\n2. a job will be posted and the id will be set to [jobId]. Use [GET  Index Query Job Status] to check the status"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Index Query Job Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6cad8cfd-0091-456f-bc53-43fba9581323",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"x-amz-security-token\", body[\"resources\"][\"results\"][\"headers\"][\"x-amz-security-token\"]); ",
+									"pm.environment.set(\"X-Amz-Date\", body[\"resources\"][\"results\"][\"headers\"][\"X-Amz-Date\"]); ",
+									"pm.environment.set(\"X-Amz-Content-SHA256\", body[\"resources\"][\"results\"][\"headers\"][\"X-Amz-Content-SHA256\"]); ",
+									"pm.environment.set(\"Authorization\", body[\"resources\"][\"results\"][\"headers\"][\"Authorization\"]); ",
+									"pm.environment.set(\"jobresulsturl\", body[\"resources\"][\"results\"][\"url\"]); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_domain}}/bim360/modelset-index/v1/containers/{{mc_containter_id}}/modelsets/{{modelset_id}}/jobs/{{jobId}}",
+							"host": [
+								"{{base_domain}}"
+							],
+							"path": [
+								"bim360",
+								"modelset-index",
+								"v1",
+								"containers",
+								"{{mc_containter_id}}",
+								"modelsets",
+								"{{modelset_id}}",
+								"jobs",
+								"{{jobId}}"
+							]
+						},
+						"description": "The result resource url will be set to [one_resource_url]. Use [GET Index Query Result File ] to download the file"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Index Query Result File (large file, better download as file)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d8f5984-b54d-40ae-acad-e5f1936be286",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"x-amz-security-token\", body[\"headers\"][\"x-amz-security-token\"]); ",
+									"pm.environment.set(\"X-Amz-Date\", body[\"headers\"][\"X-Amz-Date\"]); ",
+									"pm.environment.set(\"X-Amz-Content-SHA256\", body[\"headers\"][\"X-Amz-Content-SHA256\"]); ",
+									"pm.environment.set(\"Authorization\", body[\"headers\"][\"Authorization\"]); ",
+									"pm.environment.set(\"fieldsurl\", body[\"url\"]); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{jobresulsturl}}",
+							"host": [
+								"{{jobresulsturl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Index Healthy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d8f5984-b54d-40ae-acad-e5f1936be286",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"x-amz-security-token\", body[\"headers\"][\"x-amz-security-token\"]); ",
+									"pm.environment.set(\"X-Amz-Date\", body[\"headers\"][\"X-Amz-Date\"]); ",
+									"pm.environment.set(\"X-Amz-Content-SHA256\", body[\"headers\"][\"X-Amz-Content-SHA256\"]); ",
+									"pm.environment.set(\"Authorization\", body[\"headers\"][\"Authorization\"]); ",
+									"pm.environment.set(\"fieldsurl\", body[\"url\"]); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://developer.api.autodesk.com/bim360/modelset-index/v1/health",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"bim360",
+								"modelset-index",
+								"v1",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OAuth 2 - Autodesk -BIM 360 API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] =responseCode.code === 200 ;",
+							"tests [\"Content-Type is present\"] =responseHeaders.hasOwnProperty (\"Content-Type\") ;",
+							"tests [\"Content-Type is json\"] =postman.getResponseHeader (\"Content-Type\").indexOf (\"application/json\") !== -1 ;",
+							"",
+							"var data =JSON.parse (responseBody) ;",
+							"tests [\"Bearer ok\"] =data.access_token !== '' ;",
+							"",
+							"postman.setEnvironmentVariable (\"access_token\", data.access_token) ;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "access_token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "data:read data:write account:read account:write account:read",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_domain}}/authentication/v1/authenticate",
+					"host": [
+						"{{base_domain}}"
+					],
+					"path": [
+						"authentication",
+						"v1",
+						"authenticate"
+					]
+				},
+				"description": "https://developer.autodesk.com/api/view-and-data-api/#create-an-oauth2-token\n"
+			},
+			"response": []
+		}
+	]
+}

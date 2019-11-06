@@ -30,8 +30,8 @@ Steps:
  <p align="center"><img src="./help/desc.png" width="400"></p> 
 
 2. The **Modelset** collection provides the scripts to create modelset, while it is suggested play with scripts of GET at the beginning, so firstly create some modelsets in BIM 360 UI manually
-3. Some APIs of MC is a job, such as **modelset/version creation**, **Index (Object metadata) query**, **clash issue creating** etc. Check job status by other endpoints named with [Get *** Job Status]. 
-4. Some APIs requires **documents** data such as _documentLineage urn_ . Try with other APIs to get the data and input as payload parameters.
+3. Some APIs of MC are jobs, such as **modelset/version creation**, **Index (Object metadata) query**, **clash issue creating** etc. Check job status by other endpoints named with [Get *** Job Status]. 
+4. Some APIs require **document** data such as _documentLineage urn_ . Try with other APIs to get the data and input as payload parameters.
 
 ## License
 

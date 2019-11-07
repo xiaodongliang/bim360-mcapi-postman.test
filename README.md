@@ -1,4 +1,7 @@
-# bim360-mc.api-test
+# BIM360 Model Coordination API Postman Scripts
+
+ To work with the scripts, firstly upload some source modesl manually to BIM 360 folder and create model set in Model Coordination module with this folder. The demo source model files can be found at [BIM 360 Model Coorination API Unit Test
+ in Node.js](https://github.com/xiaodongliang/bim360-mcapi-node-unit.test/tree/master/Source%20Files). It includes two versions of models set.
 
 Steps:
 1.	This script assumes the container id of Model Coordination has been achieved by other scripts. The container id is the id of BIM360 project.

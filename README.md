@@ -1,40 +1,30 @@
-# BIM360 Model Coordination API Postman Scripts
+# Postman Collection for BIM360 Model Coordination API 
 
- To work with the scripts, firstly upload some source modesl manually to BIM 360 folder and create model set in Model Coordination module with this folder. The demo source model files can be found at [BIM 360 Model Coorination API Unit Test
- in Node.js](https://github.com/xiaodongliang/bim360-mcapi-node-unit.test/tree/master/Source%20Files). It includes two versions of models set.
+## Description
 
-Steps:
-1.	This script assumes the container id of Model Coordination has been achieved by other scripts. The container id is the id of BIM360 project.
+This repository provides two collections of Postman,one follows [API Reference](https://forge.autodesk.com/en/docs/bim360/v1/reference/http/mc-modelset-service-v3-create-model-set-POST/), the other follows [Tutorials](https://forge.autodesk.com/en/docs/bim360/v1/tutorials/model-coordination/) of Model Coordination API.
 
-<p align="center"><img src="./help/containterid.png" width="600" ></p>
+## What's Postman?
 
- It can also be achieved on BIM 360 UI manually.
+Postman is a popular tool that provides an easy-to-use interface to send HTTP requests. Postman is able to parse the responses that Forge sends you and save response parameter values to variables. These parameters can then be reused in subsequent requests through these variables. The Postman collections in this repository use this ability to provide pre-populated HTTP requests to help you follow the tutorial workflow with minimal effort. You can also modify the requests and experiment without having to write a single line of code. 
 
-<p align="center"><img src="./help/projectidinui.png" width="600"></p>
+- You can learn how to install and use Postman from [here](https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates).
 
-
-2.	Input oAuth credentials, following the steps at: https://forge.autodesk.com/en/docs/oauth/v2/tutorials/get-3-legged-token/ 
-
- <p align="center"><img src="./help/oAuth2.png" width="600"></p> 
-
- <p align="center"><img src="./help/config.png" width="600"></p> 
- 
-3.	Get access token by logging a user of the project.
-4.  Set the token to environment variable access_token 
-
- <p align="center"><img src="./help/token.png" width="600"></p> 
-
-5.	Play the scripts
+- You can download the Postman installer from [here](https://www.getpostman.com/downloads/).
 
 
-## Tricks and Tips
-1. Check _description_ of the scripts if there is any notes on the usage.
+## Steps
+1.  Clone this project or download it. It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
- <p align="center"><img src="./help/desc.png" width="400"></p> 
+    ```git clone https://github.com/xiaodongliang/bim360-mcapi-postman.test```
 
-2. The **Modelset** collection provides the scripts to create modelset, while it is suggested play with scripts of GET at the beginning, so firstly create some modelsets in BIM 360 UI manually
-3. Some APIs of MC are jobs, such as **modelset/version creation**, **Index (Object metadata) query**, **clash issue creating** etc. Check job status by other endpoints named with [Get *** Job Status]. 
-4. Some APIs require **document** data such as _documentLineage urn_ . Try with other APIs to get the data and input as payload parameters.
+2. To play API endpoints, find collection and enviroment variabiles in [API Reference](/API%20Reference), and import them to Postman. Next, check [Readme of API Reference](/API%20Reference/Readme.md) for detailed steps.
+3. To play Tutorials, find collection and enviroment variabiles in [Tutorials](/Tutorials), and import them to Postman. Next, check [Readme of API Reference](/Tutorials/Readme.md) for detailed steps.
+4. The repository provides some test models at [Models](/Models).
+5. In each collection or collection folder, some comments are enclosed for reference. Please check if there is any trick when you are stuck with the test.
+<p align="center"><img src="./help/collectioncomment.png" width="800" ></p> 
+6. In each endpoint, some comments are enclosed for reference. Please check if there is any trick when you are stuck with the test.
+<p align="center"><img src="./help/endpointcomment.png" width="800" ></p>
 
 ## License
 

@@ -28,7 +28,7 @@ This collection follows the [Tutorials](https://forge.autodesk.com/en/docs/bim36
       <p align="center"><img src="../help/projectidinui.png" width="800" ></p>  
 
    It also provides the scripts **Optional: Prepare Folders and Models** to get desired project by its name, create one suubfolder under Plan folder, upload two models to folder for coordination etc. If you want to play the optional steps, please also input __hub_name__, __project_name__,__first_file_name__,__second_file_name__,__subfolder_name__ in enviroment.
-      <p align="center"><img src="../help/optional.png" width="800" ></p> 
+      <p align="center"><img src="../help/optional.png" width="400" ></p> 
 
 6. In context menu of collection >> **Edit**, switch to the tab **Authorization**. Click **Get New Access Token**, input the variables as below:
 

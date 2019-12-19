@@ -18,13 +18,14 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
 
     ```git clone https://github.com/xiaodongliang/bim360-mcapi-postman.test```
 
-2. To play API endpoints, find collection and enviroment variabiles in [API Reference](/API%20Reference), and import them to Postman. Next, check [Readme of API Reference](/API%20Reference/Readme.md) for detailed steps.
-3. To play Tutorials, find collection and enviroment variabiles in [Tutorials](/Tutorials), and import them to Postman. Next, check [Readme of API Reference](/Tutorials/Readme.md) for detailed steps.
+2. To play API endpoints, find collection and enviroment variabiles in [API Reference](/API%20Reference), and import them to Postman. Next, check [Readme of API Reference](/API%20Reference/README.md) for detailed steps.
+3. To play Tutorials, find collection and enviroment variabiles in [Tutorials](/Tutorials), and import them to Postman. Next, check [Readme of API Reference](/Tutorials/README.md) for detailed steps.
 4. The repository provides some test models at [Models](/Models).
 5. In each collection or collection folder, some comments are enclosed for reference. Please check if there is any trick when you are stuck with the test.
 <p align="center"><img src="./help/collectioncomment.png" width="800" ></p> 
 6. In each endpoint, some comments are enclosed for reference. Please check if there is any trick when you are stuck with the test.
 <p align="center"><img src="./help/endpointcomment.png" width="800" ></p>
+7. Three [demo Revit files](Models) are also provided in case of need.
 
 ## License
 

@@ -18,7 +18,7 @@ This collection follows the endpoint schema of [API Reference](https://forge.aut
 
 5. In enviroment, input _client id_, _client secret_ and __mc_container_id__ (= __project id__ )
 
-   <p align="center"><img src="./help/apiref-env.png" width="800" ></p> 
+   <p align="center"><img src="../help/apiref-env.png" width="800" ></p> 
 
 6. In context menu of collection >> **Edit**, switch to the tab **Authorization**. Click **Get New Access Token**, input the variables as below:
 
@@ -38,8 +38,12 @@ This collection follows the endpoint schema of [API Reference](https://forge.aut
 
    - Client Authentication ``Send Client credentials body``
 
-   <p align="center"><img src="./help/apiref-oauth2.png" width="800" ></p> 
+   <p align="center"><img src="../help/apiref-oauth2.png" width="800" ></p> 
  
- 7. Start to test the endpoint of API. In each endpoint, some comments are enclosed for reference. Please check if there is any trick when you are stuck with the test. 
-    <p align="center"><img src="./help/endpointcomment.png" width="800" ></p>
+ 7. Click **Request Token**, it will direct to login Autodesk account, after it succeeds, the token will be generated. Click **Use Token**. Then, click **Update** to close the window of **Edit**
+
+   <p align="center"><img src="../help/token.png" width="800" ></p> 
+
+ 8. Start to test the endpoint of API. In each endpoint, some comments are enclosed for reference. Please check if there is any trick when you are stuck with the test. 
+    <p align="center"><img src="../help/endpointcomment.png" width="800" ></p>
   And also check [API Reference](https://forge.autodesk.com/en/docs/bim360/v1/reference/http/mc-modelset-service-v3-create-model-set-POST/) for details of the endpoint.

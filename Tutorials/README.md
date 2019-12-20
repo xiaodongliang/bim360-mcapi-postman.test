@@ -17,17 +17,14 @@ This collection follows the [Tutorials](https://forge.autodesk.com/en/docs/bim36
 
 3. Ensure [Model Coordination](https://knowledge.autodesk.com/support/bim-360/learn-explore/caas/CloudHelp/cloudhelp/ENU/BIM360D-Model-Coordination/files/GUID-38CC3A1C-92FF-4682-847F-9CFAFCC4CCCE-html.html) module has been activated in BIM 360 project. Make a note with the __project id__ (without 'b.').
 
-4. Import collection and enviroment json to Postman.
+4. Import collection and environment json to Postman.
 
-5. In enviroment, input _client id_, _client secret_ and __mc_container_id__ (= __project id__ )
+5. In environment, input _client id_, _client secret_.  In this collection, it assumes __mc_container_id__ (= __project id__ ) is available. It also assumes one subfolder (under Plan folder) is available. In this subfolder, some models have been uploaded. The __mc_container_id__ (= __project id__ ) and subfolder id can be found at address of your BIM 360 project
 
    <p align="center"><img src="../help/tutorials-env.png" width="800" ></p> 
+   <p align="center"><img src="../help/proj-folder.png" width="800" ></p>  
 
-   In this collection, it assumes __mc_container_id__ (= __project id__ ) is available. you can find the id at address of your BIM 360 project:
-
-      <p align="center"><img src="../help/projectidinui.png" width="800" ></p>  
-
-   It also provides the scripts **Optional: Prepare Folders and Models** to get desired project by its name, create one suubfolder under Plan folder, upload two models to folder for coordination etc. If you want to play the optional steps, please also input __hub_name__, __project_name__,__first_file_name__,__second_file_name__,__subfolder_name__ in enviroment.
+   **Optional**: The collection provides the scripts **Optional: Prepare Folders and Models** to get desired project by its name (i.e. get container id of model coordination), create one subfolder under Plan folder, upload two models to folder for coordination etc. If you want to play the optional steps, please also input __hub_name__, __project_name__,__first_file_name__,__second_file_name__,__subfolder_name__ in environment.
       <p align="center"><img src="../help/optional.png" width="400" ></p> 
 
 6. In context menu of collection >> **Edit**, switch to the tab **Authorization**. Click **Get New Access Token**, input the variables as below:
@@ -56,6 +53,5 @@ This collection follows the [Tutorials](https://forge.autodesk.com/en/docs/bim36
    
    Model Coordination API requires to work with 3-legged token. This collection takes **[Inheriting auth](https://learning.getpostman.com/docs/postman/sending-api-requests/authorization/#inheriting-auth)** to apply 3-legged token to every endpoint in the collection automatically, which means it does not need to input the token in the header explicitly.
 
-
  8. Start to test the tutorials.  Check the detail steps of [Model Sets and Versions] in **Tutorials Steps** section. In each endpoint, some comments are enclosed for reference. Please check if there is any trick when you are stuck with the test. And also check [Tutorials](https://forge.autodesk.com/en/docs/bim360/v1/tutorials/model-coordination/) for details of the tutorials.
-    <p align="center"><img src="../help/endpointcomment.png" width="800" ></p> 
+    <p align="center"><img src="../help/endpointcomment.png" width="800" ></p>

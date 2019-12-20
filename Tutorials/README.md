@@ -53,6 +53,9 @@ This collection follows the [Tutorials](https://forge.autodesk.com/en/docs/bim36
  7. Click **Request Token**, it will direct to login Autodesk account, after it succeeds, the token will be generated. Click **Use Token**. Then, click **Update** to close the window of **Edit**
 
    <p align="center"><img src="../help/token.png" width="600" ></p> 
+   
+   Model Coordination API requires to work with 3-legged token. This collection takes **[Inheriting auth](https://learning.getpostman.com/docs/postman/sending-api-requests/authorization/#inheriting-auth)** to apply 3-legged token to every endpoint in the collection automatically, which means it does not need to input the token in the header explicitly.
+
 
  8. Start to test the tutorials.  Check the detail steps of [Model Sets and Versions] in **Tutorials Steps** section. In each endpoint, some comments are enclosed for reference. Please check if there is any trick when you are stuck with the test. And also check [Tutorials](https://forge.autodesk.com/en/docs/bim360/v1/tutorials/model-coordination/) for details of the tutorials.
     <p align="center"><img src="../help/endpointcomment.png" width="800" ></p> 
